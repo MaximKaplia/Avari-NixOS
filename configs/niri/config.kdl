@@ -195,20 +195,13 @@ layout {
         // where you can see its inactive-color is on other monitors.
         inactive-color "#505050"
 
-        // You can also use gradients. They take precedence over solid colors.
-        // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
-        // The angle is the same as in linear-gradient, and is optional,
-        // defaulting to 180 (top-to-bottom gradient).
-        // You can use any CSS linear-gradient tool on the web to set these up.
-        // Changing the color space is also supported, check the wiki for more info.
-        //
-        // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
+        // You can also use gradients. They take precedence over solid colors. - Noctalia doesn't set these'
+        active-gradient from="#7fc8ff" to="#c7ff7f" angle=45
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
-        // To do that, set relative-to="workspace-view".
-        //
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -289,23 +282,16 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 //spawn-at-startup "kded6"
+
 spawn-at-startup "noctalia-shell"
 
-// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
-
 hotkey-overlay {
-    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
      skip-at-startup
 }
 
 
 //screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 screenshot-path null
-
-
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
 
 // Animation settings.
 // https://yalter.github.io/niri/Configuration:-Animations
@@ -376,9 +362,6 @@ animations {
    }
 
 }
-
-// Window rules let you adjust behavior for individual windows.
-// https://yalter.github.io/niri/Configuration:-Window-Rules
 
 window-rule {
     // This regular expression is intentionally made as specific as possible,
@@ -505,10 +488,6 @@ binds {
 
 
     // Core Noctalia binds
-    //Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    //Mod+S { spawn-sh "noctalia-shell ipc call controlCenter toggle"; }
-    //Mod+Comma { spawn-sh "noctalia-shell ipc call settings toggle"; }
-
     // Audio & Brightness
     XF86AudioRaiseVolume { spawn  "noctalia-shell" "ipc" "call" "volume" "increase"; }
     XF86AudioLowerVolume { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }

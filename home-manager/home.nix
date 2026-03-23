@@ -9,10 +9,7 @@
   ...
 }:
 
- let
-  base = "/home/avari/.nixfiles/configs";
-  mkLink = path: config.lib.file.mkOutOfStoreSymlink "${base}/${path}";
-in
+
 
 {
   # You can import other home-manager modules here
@@ -30,11 +27,7 @@ in
 
   ];
 #dotfiles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   home.file = {
-    ".config/niri/config.kdl".source = mkLink "niri/config.kdl";
-    ".config/fish/config.fish".source = mkLink "fish/config.fish";
-    ".config/fish/functions/fish_prompt.fish".source = mkLink "fish/functions/fish_prompt.fish";
-  };
+
 #dotfiles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

@@ -9,6 +9,7 @@
     ./UI-home.nix
     ./mimes.nix
     ./packages-home.nix
+    ./configs-home.nix
   ];
 
 }
