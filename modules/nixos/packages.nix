@@ -48,17 +48,15 @@
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
 
-      # Davinci AMD
- #   environment.variables = {
-   # RUSTICL_ENABLE = "radeonsi";
-  #};
- # hardware.graphics = {
-    #enable = true;
-    #extraPackages = with pkgs; [
-      #mesa.opencl # Enables Rusticl (OpenCL) support
-    #];
-  #};
-
-
+    # Davinci AMD - Laptop
+    environment.variables = {
+    RUSTICL_ENABLE = "radeonsi";
+  };
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      mesa.opencl # Enables Rusticl (OpenCL) support
+      ];
+    };
 }
 
