@@ -32,13 +32,14 @@
   stylix = {
     enable = true;
     autoEnable = false;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     targets = {
         alacritty.enable = true;
         blender.enable = true;
         obsidian.enable = true;
         swaync.enable = true;
         mangohud.enable = true;
+        btop.enable = true;
     };
 
   cursor = {
