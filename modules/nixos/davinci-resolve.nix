@@ -6,7 +6,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }: let
   aac-codec-plugin = pkgs.callPackage (
@@ -218,6 +217,5 @@
       };
     };
 in {
-
-environment.systemPackages = [davinci-resolve-studio-cracked];
+  environment.systemPackages = [davinci-resolve-studio-cracked];
 }

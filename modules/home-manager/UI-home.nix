@@ -40,6 +40,7 @@
         swaync.enable = true;
         mangohud.enable = true;
         btop.enable = true;
+        vscode.enable = true;
     };
 
   cursor = {

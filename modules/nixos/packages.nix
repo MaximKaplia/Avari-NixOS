@@ -1,5 +1,5 @@
 # .nixfiles/modules/nixos/packages.nix
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [

@@ -524,7 +524,7 @@ binds {
     Mod+F hotkey-overlay-title="Open: firefox" { spawn "firefox"; }
     Mod+E hotkey-overlay-title="Open: dolphin" { spawn "dolphin"; }
     Mod+Shift+B hotkey-overlay-title="Open: obsidian" { spawn "obsidian"; }
-    Mod+Escape hotkey-overlay-title="Open: Mission Center" { spawn "missioncenter"; }
+    Mod+Escape hotkey-overlay-title="Open: btop" { spawn "alacritty" "-e" "btop"; }
     // Script binds
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+Ctrl+Shift+W hotkey-overlay-title="Run: Reload waybar" { spawn-sh "/home/avari/.config/waybar/Reload.sh"; }

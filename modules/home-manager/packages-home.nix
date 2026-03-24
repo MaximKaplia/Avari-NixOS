@@ -2,6 +2,37 @@
 { config, lib, pkgs, ... }:
 
 {
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    profiles.default = {
+    extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+    ];
+      userSettings = {
+        # Nix LSP settings
+        "nixp.enableLanguageServer" = true;
+        "nixp.serverPath" = "nixd";
+        "nixp.serverSettings" = {
+          "nixd" = {
+            "formatting" = {
+              "command" = [ "alejandra" ];
+            };
+
+            "options" = {
+            "nixos" = {
+            "expr" = "(builtins.getFlake \"/home/avari/.nixfiles\").nixosConfigurations.avari.options";
+               };
+               "home_manager" = {
+                 "expr" = "(builtins.getFlake \"/home/avari/.nixfiles\").homeConfigurations.avari.options";
+               };
+             };
+          };
+        };
+      };
+      };
+    };
+
   home.packages = with pkgs; [
       haruna
       mpv
@@ -22,9 +53,12 @@
       yt-dlp
       python315
       wget
-      btop
+      btop-rocm
       ungit
-      #Nix Search TV
+# Nix Formatting ---------------
+      nixd
+      alejandra
+#Nix Search TV ------------------
       (pkgs.writeShellApplication {
     name = "ns";
     runtimeInputs = with pkgs; [

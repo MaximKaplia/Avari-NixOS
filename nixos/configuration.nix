@@ -20,6 +20,7 @@
        # Increase download buffer size
       download-buffer-size = 104857600;  # 100 MiB in bytes
       };
+      nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; #autocompletion variable
     };
 
   networking.hostName = "avari"; # Define your hostname.
@@ -92,10 +93,16 @@
     shell = pkgs.fish;
     packages = with pkgs; [
       kdePackages.kate
+
     ];
   };
 
+  environment.systemPackages = with pkgs; [
 
+    alejandra #code formatter
+    #nixfmt #more official variant
+    nixd #nix LSP
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
