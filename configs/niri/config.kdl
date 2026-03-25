@@ -10,6 +10,7 @@
 
 workspace "Main"
 workspace "Browser"
+workspace "Misc"
 
 
 prefer-no-csd //gets rid of title bars
@@ -86,7 +87,7 @@ input {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
+    output "DP-2" {
     // Uncomment this line to disable this output.
     // off
 
@@ -95,11 +96,11 @@ input {
     // If the refresh rate is omitted, niri will pick the highest refresh rate
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
+    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes. 2560x1440@170.001
+    mode "2560x1440@170.001"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
+    scale 1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -114,14 +115,23 @@ input {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    position x=0 y=0
+
 
     //VRR
     // variable-refresh-rate // sets vrr to always
     //  variable-refresh-rate on-demand=true // sets vrr only for windows that have a variable-refresh-rate rule
 
     // Focus at startup - priorities order from top to bottom
-    // focus-at-startup
+    focus-at-startup
+}
+
+    output "HDMI-A-1" {
+
+    mode "1920x1080@60.000"
+    scale 1
+    transform "normal"
+    position x=-1920 y=250
 }
 
 
@@ -139,7 +149,7 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "on-overflow"
+    center-focused-column "never"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -297,11 +307,11 @@ screenshot-path null
 // https://yalter.github.io/niri/Configuration:-Animations
 animations {
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    slowdown 2
+    slowdown 1.5
 
     window-open {
         duration-ms 350
-        curve "cubic-bezier" 0.46 0.0 0.03 1.31
+        curve "cubic-bezier" 0.46 0.0 0.03 1.15
 
         custom-shader r"
         vec4 open_color(vec3 coords_geo, vec3 size_geo) {
@@ -403,6 +413,12 @@ window-rule {
 }
 
 window-rule {
+
+    match app-id="VSCodium"
+    open-maximized true
+}
+
+window-rule {
     match app-id="xdg-desktop-portal-gtk"
     open-floating true
     min-height 600
@@ -411,11 +427,8 @@ window-rule {
 
 window-rule {
     match app-id="satty"
+    match title="Save Image As"
     open-floating true
-    min-width 600
-    max-width 600
-    min-height 600
-    max-height 600
     default-floating-position x=400 y=100 relative-to="top-left"
 }
 
@@ -459,6 +472,7 @@ window-rule {
 /-window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match app-id="^Bitwarden$"
 
     block-out-from "screen-capture"
 
@@ -510,13 +524,15 @@ binds {
 
     Mod+Q hotkey-overlay-title="Open Quicklinks" {spawn-sh "/home/avari/.config/rofi/applets/bin/quicklinks.sh";}
     Mod+W hotkey-overlay-title="Open OBS Control Panel" {spawn-sh "/home/avari/.config/rofi/applets/bin/OBS_Controll_Panel.sh";}
+
+    Mod+Ctrl+A hotkey-overlay-title="Change Audio" {spawn-sh "/home/avari/Documents/Scripts/Change_Audio.sh";}
    // OBS----------------------------------------------------------------------------------------------------------------------------------------------------------------
    Ctrl+1 hotkey-overlay-title="Start OBS recording" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Start_Rec.sh'";}
    Ctrl+2 hotkey-overlay-title="Pause OBS recording" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Pause_Rec.sh'";}
    Ctrl+3 hotkey-overlay-title="Resume OBS recording" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Resume_Rec.sh'";}
    Ctrl+4 hotkey-overlay-title="Stop OBS recording" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Stop_Rec.sh'";}
    Alt+S hotkey-overlay-title="Add Marker" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Marker.sh'";}
-   Alt+Shift+S hotkey-overlay-title="Add Boss Marker" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Boss_Marker.sh'";}
+   Alt+Ctrl+S hotkey-overlay-title="Add Boss Marker" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Boss_Marker.sh'";}
    Alt+0 hotkey-overlay-title="Counter Plus" {spawn "/home/avari/Documents/Scripts/OBS_Counter_PLUS.sh";}
    Alt+9 hotkey-overlay-title="Counter Minus" {spawn "/home/avari/Documents/Scripts/OBS_Counter_MINUS.sh";}
    // Apps----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -524,7 +540,8 @@ binds {
     Mod+F hotkey-overlay-title="Open: firefox" { spawn "firefox"; }
     Mod+E hotkey-overlay-title="Open: dolphin" { spawn "dolphin"; }
     Mod+Shift+B hotkey-overlay-title="Open: obsidian" { spawn "obsidian"; }
-    Mod+Escape hotkey-overlay-title="Open: Mission Center" { spawn "missioncenter"; }
+    Mod+Shift+V hotkey-overlay-title="Open: VSCodium" { spawn "codium"; }
+    Mod+Escape hotkey-overlay-title="Open: btop" { spawn "alacritty" "-e" "btop"; }
     // Script binds
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+Ctrl+Shift+W hotkey-overlay-title="Run: Reload waybar" { spawn-sh "/home/avari/.config/waybar/Reload.sh"; }
@@ -623,10 +640,10 @@ binds {
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
     // ...
 
-    Mod+Shift+Page_Down { move-workspace-down; }
-    Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+U         { move-workspace-down; }
-    Mod+Shift+I         { move-workspace-up; }
+    //Mod+Shift+Page_Down { move-workspace-down; }
+    //Mod+Shift+Page_Up   { move-workspace-up; }
+    //Mod+Shift+U         { move-workspace-down; }
+    //Mod+Shift+I         { move-workspace-up; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
@@ -670,10 +687,12 @@ binds {
     // will all refer to the 3rd workspace.
     Alt+1 { focus-workspace "Main"; }
     Alt+2 { focus-workspace "Browser"; }
-    Alt+3 { focus-workspace 3; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Alt+3 { focus-workspace "Misc"; }
+    Alt+4 { focus-workspace 4; }
+    Mod+Ctrl+1 { move-column-to-workspace "Main"; }
+    Mod+Ctrl+2 { move-column-to-workspace "Browser"; }
+    Mod+Ctrl+3 { move-column-to-workspace "Misc"; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -741,9 +760,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { spawn "/home/avari/Documents/Scripts/screenshot-edit.sh" "interactive"; }
-    Ctrl+Print { spawn "/home/avari/Documents/Scripts/screenshot-edit.sh" "screen";  }
-    Alt+Print { spawn "/home/avari/Documents/Scripts/screenshot-edit.sh" "window";  }
+    Mod+6 { spawn "/home/avari/Documents/Scripts/screenshot-edit.sh" "interactive"; }
+    Mod+Shift+6 { spawn "/home/avari/Documents/Scripts/screenshot-edit.sh" "screen";  }
+    Mod+Alt+6 { spawn "/home/avari/Documents/Scripts/screenshot-edit.sh" "window";  }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

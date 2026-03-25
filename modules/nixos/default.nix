@@ -4,10 +4,13 @@
   # List your module files here
   # my-module = import ./my-module.nix;
   imports = [
+    ./keyboard-fix.nix
     ./sddm.nix
     ./bootloader.nix
+    ./zram.nix
     ./noctalia.nix
     ./packages.nix
+    ./gaming.nix
     ./UI-packages.nix
     ./stylix-system.nix
     ./EasyEffects.nix

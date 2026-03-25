@@ -7,11 +7,7 @@
   config,
   pkgs,
   ...
-}:
-
-
-
-{
+}: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -24,12 +20,10 @@
     # ./nvim.nix
 
     ../modules/home-manager # <- imports all home-manager modules
-
   ];
-#dotfiles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #dotfiles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#dotfiles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+  #dotfiles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   nixpkgs = {
     # You can add overlays here
@@ -56,6 +50,10 @@
     };
   };
 
+  #  home.packages = with pkgs; [
+  # obs-studio
+  #];
+
   home = {
     username = "avari";
     homeDirectory = "/home/avari";
@@ -67,7 +65,6 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

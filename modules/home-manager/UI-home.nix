@@ -1,9 +1,11 @@
 # .nixfiles/modules/home-manager/UI-home.nix
-{ config, lib, pkgs, ... }:
-
 {
-
- home.packages = with pkgs; [
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [
     # Cursors --------------------------
     capitaine-cursors
     # Icons -----------------------------
@@ -23,32 +25,37 @@
     wl-clipboard # clipboard
   ];
 
-  #Screenshots
+  #Screenshots editing
   programs.satty.enable = true;
   #Notification center
   services.swaync.enable = false;
 
+  ### Stylix --------------------------------------------------------------------------------------------
+  programs.btop = {
+    enable = true;
+    package = pkgs.btop-cuda;
+  };
 
   stylix = {
     enable = true;
     autoEnable = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     targets = {
-        alacritty.enable = true;
-        blender.enable = true;
-        obsidian.enable = true;
-        swaync.enable = true;
-        mangohud.enable = true;
-        btop.enable = true;
+      alacritty.enable = true;
+      blender.enable = true;
+      swaync.enable = true;
+      mangohud.enable = true;
+      btop.enable = true;
+      vscode.enable = true;
     };
 
-  cursor = {
-    package = pkgs.kdePackages.breeze;
-    name = "breeze_cursors";
-    size = 24;
-  };
+    cursor = {
+      package = pkgs.kdePackages.breeze;
+      name = "breeze_cursors";
+      size = 24;
+    };
 
-     fonts = {
+    fonts = {
       monospace = {
         package = pkgs.nerd-fonts.caskaydia-mono;
         name = "Caskaydia Mono Nerd Font";
@@ -60,28 +67,29 @@
       serif = {
         package = pkgs.dejavu_fonts;
         name = "DeajaVu Serif";
+      };
     };
   };
-};
 
- gtk = {
+  ### --------------------------------------------------------------------------------------------------
+
+  # GTK configuration
+  gtk = {
     enable = true;
     iconTheme = {
-      name = "Papirus";
+      name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
   };
 
-
-   # Qt configuration
+  # Qt configuration
   qt = {
     enable = true;
     platformTheme.name = "qt6ct";
     style.name = "qt6ct";
   };
 
-
- home.sessionVariables = {
+  home.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
     QT_QPA_PLATFORMTHEME = "qt6ct";
     GTK_USE_PORTAL = "1";
@@ -90,5 +98,4 @@
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "niri";
   };
-
 }

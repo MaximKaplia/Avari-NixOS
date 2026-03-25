@@ -1,3 +1,4 @@
+#.nixfiles/overlays/default.nix
 # This file defines overlays
 {inputs, ...}: {
   # This one brings our custom packages from the 'pkgs' directory
@@ -10,6 +11,12 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+    blender = prev.blender.override {cudaSupport = true;};
+    obs-studio = prev.obs-studio.override {
+      cudaSupport = true;
+      browserSupport = true;
+      scriptingSupport = true;
+    };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
@@ -20,4 +27,7 @@
       config.allowUnfree = true;
     };
   };
+
+  # Adds the emacs overlay - reference how to enable overlays (also has to be enabled in home.nix)
+  # emacs = inputs.emacs-overlay.overlays.default;
 }

@@ -1,8 +1,11 @@
 #.nixfiles/modules/nixos/sddm.nix
-{ pkgs, inputs, ... }:
-let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   custom-sddm-astronaut = pkgs.sddm-astronaut.override {
-    embeddedTheme = "pixel_sakura";  # Change to pixel_sakura
+    embeddedTheme = "pixel_sakura"; # Change to pixel_sakura
     # Optional: Customize further
     # themeConfig = {
     #   Background = "path/to/your/custom/background.png";
@@ -34,7 +37,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     custom-sddm-astronaut
-    kdePackages.qtmultimedia  # For video/GIF backgrounds
+    kdePackages.qtmultimedia # For video/GIF backgrounds
   ];
   # reference - https://github.com/VoidKeishi/nixos-config/blob/main/modules%2Fsddm.nix#L1-L34
 }

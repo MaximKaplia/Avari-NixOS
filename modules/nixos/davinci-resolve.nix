@@ -218,6 +218,5 @@
       };
     };
 in {
-
-environment.systemPackages = [davinci-resolve-studio-cracked];
+  environment.systemPackages = [davinci-resolve-studio-cracked];
 }

@@ -9,7 +9,7 @@
     ./UI-home.nix
     ./mimes.nix
     ./packages-home.nix
+    ./gaming-home.nix
     ./configs-home.nix
   ];
-
 }

@@ -1,30 +1,30 @@
 #.nixfiles/modules/nixos/stylix-system.nix
-{ pkgs, inputs, ... }:
 {
-
-    environment.systemPackages = with pkgs; [
+  pkgs,
+  inputs,
+  ...
+}: {
+  environment.systemPackages = with pkgs; [
     # Color Schemes -----------------------------------------------
     base16-schemes
-    ];
-    ##Fonts------------------------------------------------------------
-    ###  fc-cache -fv to reload font cache
-    fonts.packages = with pkgs; [
+  ];
+  ##Fonts------------------------------------------------------------
+  ###  fc-cache -fv to reload font cache
+  fonts.packages = with pkgs; [
     nerd-fonts.departure-mono
     nerd-fonts.caskaydia-cove
-    ];
+  ];
+  stylix = {
+    enable = true;
+    autoEnable = false;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
 
-    stylix = {
-        enable = true;
-        autoEnable = false;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-
-        targets = {
-            # grub.enable = true;
-            # grub.useWallpaper = true;
-            plymouth.enable = true;
-            nixos-icons.enable = true;
-            console.enable = true;
-
-        };
+    targets = {
+      # grub.enable = true;
+      # grub.useWallpaper = true;
+      plymouth.enable = true;
+      nixos-icons.enable = true;
+      console.enable = true;
     };
+  };
 }
