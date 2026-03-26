@@ -12,6 +12,8 @@
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
       ];
+      enableExtensionUpdateCheck = false;
+      enableUpdateCheck = false;
       userSettings = {
         # Nix LSP settings
         "nix.enableLanguageServer" = true;
@@ -32,6 +34,12 @@
             };
           };
         };
+        "nix.hiddenLanguageServerErrors" = [
+          "unknown node type for definition"
+          "Request textDocument/definition failed"
+          "textDocument/definition"
+          "definition failed"
+        ];
       };
     };
   };
@@ -59,8 +67,8 @@
     ungit
     neovim
     # Autocompletion -----------------
-    alejandra
-    nixd
+    unstable.alejandra
+    unstable.nixd
     #Nix Search TV -------------------
     (pkgs.writeShellApplication {
       name = "ns";

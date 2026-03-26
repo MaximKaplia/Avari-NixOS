@@ -11,7 +11,16 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    blender = prev.blender.override {cudaSupport = true;};
+    blender =
+      (prev.blender.override {
+        cudaSupport = true;
+      }).overrideAttrs (oldAttrs: {
+        version = "5.0.1";
+        src = final.fetchzip {
+          url = "https://download.blender.org/source/blender-5.0.1.tar.xz";
+          hash = "sha256-fNnQRfGfNc7rbk8npkcYtoAqRjJc6MaV4mqtSJxd0EM=";
+        };
+      });
     obs-studio = prev.obs-studio.override {
       cudaSupport = true;
       browserSupport = true;

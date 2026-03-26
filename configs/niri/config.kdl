@@ -465,11 +465,86 @@ window-rule {
     open-focused true
 }
 
+window-rule {
+    match title="File Already Exists — Ark"
 
+    open-floating true
+    open-focused true
+}
+
+// Davinci Rules -------------------------------------------------------------------
+window-rule {
+    match title="resolve"
+
+    open-floating true
+    open-focused true
+}
+
+window-rule {
+    match title="Project Manager"
+
+    open-floating true
+    open-focused true
+}
+
+window-rule {
+    match title="^DaVinci Resolve Studio.*"
+
+    ///open-maximized-to-edges true
+    open-maximized true
+    open-focused true
+}
+
+
+window-rule {
+    match title="Dialog"
+
+    open-floating true
+    open-focused true
+
+
+}
+
+window-rule {
+    match title="Import Media"
+
+    open-floating true
+    open-focused true
+
+    default-column-width { fixed 1200; }
+    default-window-height { fixed 700; }
+}
+
+
+window-rule {
+    match title="Render in Place"
+
+    open-floating true
+    open-focused true
+
+    default-column-width { fixed 800; }
+    default-window-height { fixed 300; }
+}
+
+window-rule {
+    match title="Color"
+    open-floating true
+    default-floating-position x=20 y=300 relative-to="top-left"
+
+}
+
+window-rule {
+    match app-id="kdialog"
+
+    open-floating true
+    open-focused true
+    default-column-width { fixed 1200; }
+    default-window-height { fixed 700; }
+}
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
     match app-id="^Bitwarden$"
