@@ -32,11 +32,12 @@
   # be accessible through 'pkgs.unstable'
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system; # was final.system
       config.allowUnfree = true;
     };
   };
 
   # Adds the emacs overlay - reference how to enable overlays (also has to be enabled in home.nix)
   # emacs = inputs.emacs-overlay.overlays.default;
+
 }

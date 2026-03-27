@@ -50,7 +50,9 @@
     sqlite
     vesktop
     obsidian
+    aseprite
     rofi
+    obs-cmd
     #copyq # clipboard manager
     # Terminal -----------------------
     alacritty

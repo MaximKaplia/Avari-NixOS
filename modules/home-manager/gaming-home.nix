@@ -13,6 +13,8 @@
   };
 
   programs.lutris = {
+    
+    package = pkgs.unstable.lutris;
     enable = true;
     extraPackages = with pkgs; [
       winetricks

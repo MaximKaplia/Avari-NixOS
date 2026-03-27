@@ -7,6 +7,18 @@
   # Install steam
   programs.steam.enable = true;
 
+  # Enable flathub
+  services.flatpak.enable = true;
+
+  #Enable flathub repo
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
+  
   # Nvidia
   hardware.graphics.enable = true; # Opengl - can be omitted, comes with steam
 
@@ -28,6 +40,7 @@
 
   environment.systemPackages = with pkgs; [
     protontricks
+    protonup-qt
     vkbasalt
     winetricks
     wineWowPackages.stable
@@ -54,6 +67,7 @@
       #80
       25565
       4445 # Minecraft
+      4455 # OBS
       1935 # RTMPT
       443 # RTMPT/HTTPS
       27015

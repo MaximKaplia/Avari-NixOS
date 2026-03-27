@@ -57,8 +57,8 @@ input {
     mouse {
         // off
         // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 0.65
+        accel-profile "flat"  //removes acceleration
         // scroll-method "no-scroll"
     }
 
@@ -472,6 +472,49 @@ window-rule {
     open-focused true
 }
 
+// Izotope Rules ---------------------------------------------------------------------
+
+window-rule {
+    match title="iZotope RX 11 Advanced Audio Editor"
+    open-maximized true
+    open-focused true
+}
+
+// Affinity Rules --------------------------------------------------------------------
+
+window-rule {
+    match title="^Affinity.*"
+
+    open-maximized true
+    open-focused true
+}
+
+// Steam Rules -----------------------------------------------------------------------
+
+window-rule {
+    match title="Steam"
+    open-focused true
+    open-maximized true
+}
+
+window-rule {
+    match title="Steam Settings"
+    open-floating true
+    open-focused true
+    default-window-height { fixed 600; }
+    default-column-width { fixed 500; }
+
+}
+
+window-rule {
+    match title="Friends List"
+    open-floating true
+    open-focused false
+    default-window-height { fixed 600; }
+    default-column-width { fixed 500; }
+    default-floating-position x=20 y=70 relative-to="top-right"
+}
+
 // Davinci Rules -------------------------------------------------------------------
 window-rule {
     match title="resolve"
@@ -489,8 +532,6 @@ window-rule {
 
 window-rule {
     match title="^DaVinci Resolve Studio.*"
-
-    ///open-maximized-to-edges true
     open-maximized true
     open-focused true
 }
@@ -602,12 +643,12 @@ binds {
 
     Mod+Ctrl+A hotkey-overlay-title="Change Audio" {spawn-sh "/home/avari/Documents/Scripts/Change_Audio.sh";}
    // OBS----------------------------------------------------------------------------------------------------------------------------------------------------------------
-   Ctrl+1 hotkey-overlay-title="Start OBS recording" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Start_Rec.sh'";}
-   Ctrl+2 hotkey-overlay-title="Pause OBS recording" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Pause_Rec.sh'";}
-   Ctrl+3 hotkey-overlay-title="Resume OBS recording" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Resume_Rec.sh'";}
-   Ctrl+4 hotkey-overlay-title="Stop OBS recording" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Stop_Rec.sh'";}
-   Alt+S hotkey-overlay-title="Add Marker" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Marker.sh'";}
-   Alt+Ctrl+S hotkey-overlay-title="Add Boss Marker" {spawn "'/home/avari/Documents/Scripts/OBS Cmd/OBS_Boss_Marker.sh'";}
+   Ctrl+1 hotkey-overlay-title="Start OBS recording" {spawn "/home/avari/Documents/Scripts/OBS Cmd/OBS_Start_Rec.sh";}
+   Ctrl+2 hotkey-overlay-title="Pause OBS recording" {spawn "/home/avari/Documents/Scripts/OBS Cmd/OBS_Pause_Rec.sh";}
+   Ctrl+3 hotkey-overlay-title="Resume OBS recording" {spawn "/home/avari/Documents/Scripts/OBS Cmd/OBS_Resume_Rec.sh";}
+   Ctrl+4 hotkey-overlay-title="Stop OBS recording" {spawn "/home/avari/Documents/Scripts/OBS Cmd/OBS_Stop_Rec.sh";}
+   Alt+S hotkey-overlay-title="Add Marker" {spawn "/home/avari/Documents/Scripts/OBS Cmd/OBS_Marker.sh";}
+   Alt+Ctrl+S hotkey-overlay-title="Add Boss Marker" {spawn "/home/avari/Documents/Scripts/OBS Cmd/OBS_Boss_Marker.sh";}
    Alt+0 hotkey-overlay-title="Counter Plus" {spawn "/home/avari/Documents/Scripts/OBS_Counter_PLUS.sh";}
    Alt+9 hotkey-overlay-title="Counter Minus" {spawn "/home/avari/Documents/Scripts/OBS_Counter_MINUS.sh";}
    // Apps----------------------------------------------------------------------------------------------------------------------------------------------------------------------
