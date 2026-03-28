@@ -5,7 +5,8 @@
   # my-module = import ./my-module.nix;
   imports = [
     ./git.nix
-    ./alacritty.nix
+    ##./alacritty.nix #pixel font
+    ./yazi.nix
     ./UI-home.nix
     ./mimes.nix
     ./packages-home.nix

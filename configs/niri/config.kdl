@@ -119,7 +119,7 @@ input {
 
 
     //VRR
-    // variable-refresh-rate // sets vrr to always
+    //variable-refresh-rate // sets vrr to always
     //  variable-refresh-rate on-demand=true // sets vrr only for windows that have a variable-refresh-rate rule
 
     // Focus at startup - priorities order from top to bottom
@@ -652,12 +652,12 @@ binds {
    Alt+0 hotkey-overlay-title="Counter Plus" {spawn "/home/avari/Documents/Scripts/OBS_Counter_PLUS.sh";}
    Alt+9 hotkey-overlay-title="Counter Minus" {spawn "/home/avari/Documents/Scripts/OBS_Counter_MINUS.sh";}
    // Apps----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Mod+Shift+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+Shift+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+F hotkey-overlay-title="Open: firefox" { spawn "firefox"; }
     Mod+E hotkey-overlay-title="Open: dolphin" { spawn "dolphin"; }
     Mod+Shift+B hotkey-overlay-title="Open: obsidian" { spawn "obsidian"; }
     Mod+Shift+V hotkey-overlay-title="Open: VSCodium" { spawn "codium"; }
-    Mod+Escape hotkey-overlay-title="Open: btop" { spawn "alacritty" "-e" "btop"; }
+    Mod+Escape hotkey-overlay-title="Open: btop" { spawn "kitty" "-e" "btop"; }
     // Script binds
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+Ctrl+Shift+W hotkey-overlay-title="Run: Reload waybar" { spawn-sh "/home/avari/.config/waybar/Reload.sh"; }

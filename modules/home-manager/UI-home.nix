@@ -36,17 +36,24 @@
     package = pkgs.btop-cuda;
   };
 
+  programs.kitty = {
+    enable = true;
+    extraConfig = "cursor_trail 1";
+    };
+
   stylix = {
     enable = true;
     autoEnable = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/terracotta-dark.yaml";
     targets = {
       alacritty.enable = true;
+      kitty.enable = true;
       blender.enable = true;
       swaync.enable = true;
       mangohud.enable = true;
       btop.enable = true;
       vscode.enable = true;
+      yazi.enable = true;
     };
 
     cursor = {

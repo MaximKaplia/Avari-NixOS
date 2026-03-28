@@ -27,7 +27,12 @@
     # Monitors -------------------------
     brightnessctl
     ddcutil
+    # Authentication agent -------------
+    polkit_gnome
+    gnome-keyring #secret portal
   ];
+
+  security.polkit.enable = true;
 
   # Enabling just enabling i2c is not enough for ddcutil
   hardware.i2c.enable = true;

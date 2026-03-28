@@ -7,6 +7,8 @@
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
     qbittorrent
+    gparted
+    colmapWithCuda
     alsa-scarlett-gui
     # KDE ----------------------------
     kdePackages.dolphin

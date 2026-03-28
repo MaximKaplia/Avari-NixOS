@@ -60,4 +60,5 @@ function fish_prompt --description 'Write out the prompt'
         (set_color -b $bright_blue) (set_color $bright_foreground) " " (prompt_pwd) " " \
         (set_color -b normal) (set_color $bright_blue) "" \
         $normal (fish_vcs_prompt) $normal " " $prompt_status
+        
 end

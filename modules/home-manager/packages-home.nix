@@ -44,6 +44,62 @@
     };
   };
 
+# Fish shell ----------------------------------------------------------------------
+  programs.fish = {
+    enable = true;
+
+    interactiveShellInit = ''
+      set -U fish_greeting
+      fastfetch
+      # Bobthefish theme configuration
+      set -g theme_nerd_fonts yes
+      set -g theme_color_scheme dark
+      set -g default_user Avari \udb84\udd05
+      set -g theme_display_user
+
+      # Prompt options
+      set -g theme_display_jobs_verbose no
+
+      # Virtual environment options
+      set -g theme_display_nix yes
+
+      # Right prompt
+      set -g theme_display_date yes
+      set -g theme_display_cmd_duration yes
+
+      # Color Scheme
+
+      ###set -g theme_color_scheme base16
+
+    '';
+
+    plugins = [
+      # oh-my-fish plugins are stored in their own repositories, which
+      # makes them simple to import into home-manager.
+      {
+        name = "theme-bobthefish";
+        src = pkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = "theme-bobthefish";
+          rev = "c5efbe05aed81b201454c0ae1190ba91ea1970ac";
+          sha256 = "1m98g825zjr3l2jr7gqh7glabaqrm0by9l2z5l4a9spjggixsrfp";
+        };
+      }
+    ];
+  };
+  # ----------------------------------------------------------------------------------
+
+  # Disable bobthefish greeting with an empty function
+  home.file.".config/fish/functions/fish_greeting.fish".text = ''
+    function fish_greeting
+        # Empty function - disables the greeting
+    end
+  '';
+
+  # Authentication agent service
+  services.polkit-gnome.enable = true;
+  services.gnome-keyring.enable = true;
+
   home.packages = with pkgs; [
     haruna
     mpv
