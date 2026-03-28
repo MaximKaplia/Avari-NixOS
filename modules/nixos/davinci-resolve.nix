@@ -87,7 +87,7 @@
 
   # --- Davinci Resolve Studio ---
 
-  davinci-resolve-studio-cracked = let
+  davinci-resolve-studio-FFMPEG = let
     davinci-patched = pkgs.davinci-resolve-studio.davinci.overrideAttrs (old: {
       # Crack patches tested on 20.2.3
       # Based on https://www.reddit.com/r/LinuxCrackSupport/comments/1nfqhld/davinci_resolve_studio_202_fix_linux_crack_guide/
@@ -217,5 +217,5 @@
       };
     };
 in {
-  environment.systemPackages = [davinci-resolve-studio-cracked];
+  environment.systemPackages = [davinci-resolve-studio-FFMPEG];
 }

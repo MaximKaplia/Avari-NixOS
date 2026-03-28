@@ -1,6 +1,4 @@
-{
-  ...
-}: {
+{...}: {
   fileSystems."/mnt/Archive" = {
     device = "/dev/disk/by-uuid/fdb6e762-9fef-4aa2-a812-83aa96ab8720";
     fsType = "ext4";

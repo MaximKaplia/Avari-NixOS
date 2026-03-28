@@ -11,9 +11,9 @@
     ];
       userSettings = {
         # Nix LSP settings
-        "nixp.enableLanguageServer" = true;
-        "nixp.serverPath" = "nixd";
-        "nixp.serverSettings" = {
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nixd";
+        "nix.serverSettings" = {
           "nixd" = {
             "formatting" = {
               "command" = [ "alejandra" ];

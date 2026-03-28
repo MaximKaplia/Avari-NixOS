@@ -2,14 +2,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, lib, config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
@@ -17,11 +20,16 @@
     settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-       # Increase download buffer size
-      download-buffer-size = 104857600;  # 100 MiB in bytes
-      };
-      nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; #autocompletion variable
+      # Increase download buffer size
+      download-buffer-size = 104857600; # 100 MiB in bytes
     };
+
+    # Opinionated: make flake registry and nix path match flake inputs
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath =
+      (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs)
+      ++ ["nixpkgs=${inputs.nixpkgs}"]; # + autocompletion variable
+  };
 
   networking.hostName = "avari"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -52,9 +60,11 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-
-  # Niri
-  programs.niri.enable = true;
+  # Niri - unstable
+  programs.niri = {
+    enable = true;
+    package = pkgs.unstable.niri;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -89,26 +99,33 @@
   users.users.avari = {
     isNormalUser = true;
     description = "avari";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.fish;
     packages = with pkgs; [
       kdePackages.kate
-
     ];
   };
 
   environment.systemPackages = with pkgs; [
-
     alejandra #code formatter
     #nixfmt #more official variant
     nixd #nix LSP
   ];
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # Allow unfree packages and add overlays
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+    overlays = [
+      inputs.self.overlays.additions
+      inputs.self.overlays.modifications
+      inputs.self.overlays.unstable-packages # This adds pkgs.unstable
+    ];
+  };
 
   programs.fish = {
-   enable = true;
+    enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
     '';
@@ -139,9 +156,7 @@
   # networking.firewall.enable = false;
 
   networking.firewall = {
-
     enable = true;
-
   };
 
   # This value determines the NixOS release from which the default
@@ -151,5 +166,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }

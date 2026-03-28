@@ -1,8 +1,5 @@
 # .nixfiles/modules/nixos/bootloader.nix
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   fallout =
     pkgs.fetchFromGitHub
     {
