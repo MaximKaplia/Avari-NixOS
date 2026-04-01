@@ -26,6 +26,7 @@
     nh
     # Creation ---------------------
     blender
+    davinci-resolve-ffmpeg
   ];
 
   # Install firefox

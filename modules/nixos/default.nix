@@ -11,7 +11,6 @@
     ./UI-packages.nix
     ./stylix-system.nix
     ./EasyEffects.nix
-    ./davinci-resolve.nix
     ./mounts.nix
   ];
 }
