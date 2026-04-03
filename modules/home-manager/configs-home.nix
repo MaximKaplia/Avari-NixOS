@@ -11,7 +11,9 @@ in {
   home.file = {
     #files
     ".config/niri/config.kdl".source = mkLink "niri/config.kdl";
-    #".config/fish/config.fish".source = mkLink "fish/config.fish";
-    #".config/fish/functions/fish_prompt.fish".source = mkLink "fish/functions/fish_prompt.fish";
+    #".config/niri/niri-modules/pop-animations.kdl".source = mkLink "niri/niri-modules/pop-animations.kdl";
+    
+     # symlink the entire niri-modules folder
+    ".config/niri/niri-modules".source = mkLink "niri/niri-modules";
   };
 }

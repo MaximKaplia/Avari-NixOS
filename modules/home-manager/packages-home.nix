@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: {
+  # VS Codium ---------------------------------------------------------------------
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -44,7 +45,7 @@
     };
   };
 
-# Fish shell ----------------------------------------------------------------------
+  # Fish shell ----------------------------------------------------------------------
   programs.fish = {
     enable = true;
 
@@ -54,8 +55,8 @@
       # Bobthefish theme configuration
       set -g theme_nerd_fonts yes
       set -g theme_color_scheme dark
-      set -g default_user Avari \udb84\udd05
-      set -g theme_display_user
+      set -g theme_display_user yes
+
 
       # Prompt options
       set -g theme_display_jobs_verbose no
@@ -74,8 +75,6 @@
     '';
 
     plugins = [
-      # oh-my-fish plugins are stored in their own repositories, which
-      # makes them simple to import into home-manager.
       {
         name = "theme-bobthefish";
         src = pkgs.fetchFromGitHub {
@@ -87,16 +86,29 @@
       }
     ];
   };
-  # ----------------------------------------------------------------------------------
 
-  # Disable bobthefish greeting with an empty function
+  # Disables bobthefish greeting with an empty function
   home.file.".config/fish/functions/fish_greeting.fish".text = ''
     function fish_greeting
         # Empty function - disables the greeting
     end
   '';
+  # ----------------------------------------------------------------------------------
 
-  # Authentication agent service
+  programs.btop = {
+    enable = true;
+    package = pkgs.btop-cuda;
+  };
+
+  programs.kitty = {
+    enable = true;
+    settings = {
+      cursor_trail = 1;
+      confirm_os_window_close = 0;
+    };
+  };
+
+  # Authentication agent service -------------------------------------------------------
   services.polkit-gnome.enable = true;
   services.gnome-keyring.enable = true;
 
@@ -123,10 +135,11 @@
     python315
     wget
     ungit
-    neovim
+    # neovim managed by lazyvim
+    nix-prefetch-git
     # Autocompletion -----------------
-    unstable.alejandra
-    unstable.nixd
+    alejandra
+    nixd
     #Nix Search TV -------------------
     (pkgs.writeShellApplication {
       name = "ns";

@@ -24,6 +24,8 @@
     unstable.xwayland-satellite
     # System -----------------------
     nh
+    # Audio --------------------------
+    playerctl
     # Creation ---------------------
     blender
     #Audio -------------------------

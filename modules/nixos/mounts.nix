@@ -49,16 +49,14 @@
     device = "/dev/disk/by-uuid/B250048150044F13";
     fsType = "ntfs-3g";
     options = [
-      "defaults"
-      "users"
-      "nofail"
-      "exec"
-      "uid=1000"
-      "gid=100"
-      "fmask=113"
-      "dmask=002"
-      "windows_names"
-      "locale=en_US.UTF-8"
+    "rw"
+    "uid=1000"
+    "gid=100"
+    "umask=022"
+    "windows_names"
+    "nofail"
+    "users"
+    "exec"
     ];
   };
 

@@ -1,0 +1,76 @@
+// Animation settings.
+// https://yalter.github.io/niri/Configuration:-Animations
+animations {
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    slowdown 1.5
+
+    window-open {
+        duration-ms 350
+        curve "cubic-bezier" 0.46 0.0 0.03 1.15
+
+        custom-shader r"
+        vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+            // Scale up the window
+            float scale = max(0.0, (niri_progress * 0.6 + 0.4));
+            coords_geo = vec3((coords_geo.xy - vec2(0.5)) / scale + vec2(0.5), 1.0);
+
+            // Get color from the window texture
+            vec3 coords_tex = niri_geo_to_tex * coords_geo;
+            vec4 color = texture2D(niri_tex, coords_tex.st);
+
+            // Make the window opaque
+            color *= niri_clamped_progress;
+
+            return color;
+        }
+        "
+    }
+    window-close {
+        duration-ms 250
+        curve "cubic-bezier" 0.79 0.14 0.15 0.86
+
+        custom-shader r"
+        vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+            // Scale down the window (reverse of opening)
+            // At progress=0: scale=1.0 (full size)
+            // At progress=1: scale=0.4 (small size)
+            float scale = max(0.0, (1.0 - niri_progress) * 0.6 + 0.4);
+            coords_geo = vec3((coords_geo.xy - vec2(0.5)) / scale + vec2(0.5), 1.0);
+
+            // Get color from the window texture
+            vec3 coords_tex = niri_geo_to_tex * coords_geo;
+            vec4 color = texture2D(niri_tex, coords_tex.st);
+
+            // Fade out the window (reverse of opening)
+            color *= (1.0 - niri_clamped_progress);
+
+            return color;
+        }
+        "
+    }
+
+
+
+
+   window-movement {
+        spring damping-ratio=0.85 stiffness=650 epsilon=0.0001
+   }
+   window-resize {
+        spring damping-ratio=0.8 stiffness=700 epsilon=0.0001
+   }
+//-----------------------------------------------------------------------
+   horizontal-view-movement {
+       spring damping-ratio=1.0 stiffness=640 epsilon=0.0001
+   }
+   workspace-switch {
+        spring damping-ratio=1.0 stiffness=550 epsilon=0.0001
+   }
+
+
+   screenshot-ui-open {
+       duration-ms 500
+       curve "ease-out-quad"
+   }
+}
+
+

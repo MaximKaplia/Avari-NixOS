@@ -31,16 +31,6 @@
   services.swaync.enable = false;
 
   ### Stylix --------------------------------------------------------------------------------------------
-  programs.btop = {
-    enable = true;
-    package = pkgs.btop-cuda;
-  };
-
-  programs.kitty = {
-    enable = true;
-    extraConfig = "cursor_trail 1";
-    };
-
   stylix = {
     enable = true;
     autoEnable = false;

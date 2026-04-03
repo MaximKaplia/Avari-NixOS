@@ -25,7 +25,73 @@ home.packages = with pkgs; [
   programs.yazi = {
     enable = true;
     enableFishIntegration = false;
+settings = {
+      opener = {
 
+        edit = [
+      {
+        run = "nvim \"$@\"";
+        desc = "Edit with Neovim";
+        block = true;
+      }
+    ];
+
+        codium = [
+          {
+            run = "codium \"$@\"";
+            desc = "Open with VSCodium";
+            block = true;
+          }
+        ];
+        gwenview = [
+          {
+            run = "gwenview \"$@\"";
+            desc = "Open with Gwenview";
+            block = false;
+            orphan = true;
+          }
+        ];
+        haruna = [
+          {
+            run = "haruna \"$@\"";
+            desc = "Open with Haruna";
+            block = false;
+            orphan = true;
+          }
+        ];
+        firefox = [
+          {
+            run = "firefox \"$@\"";
+            desc = "Open with Firefox";
+            block = false;
+            orphan = true;
+          }
+        ];
+      };
+      
+      open = {
+        prepend_rules = [
+          # Text/code files
+          { mime = "text/*"; use = ["edit" "codium"]; }
+          { mime = "application/json"; use = "codium"; }
+          { mime = "application/x-yaml"; use = "codium"; }
+          { mime = "application/xml"; use = "codium"; }
+          { mime = "application/x-shellscript"; use = "codium"; }
+          
+          # Images
+          { mime = "image/*"; use = "gwenview"; }
+          
+          # Videos
+          { mime = "video/*"; use = "haruna"; }
+
+          # Music
+          { mime = "audio/*"; use = "haruna"; }
+          
+          # PDFs
+          { mime = "application/pdf"; use = "firefox"; }
+        ];
+      };
+    };
     plugins = with pkgs.yaziPlugins; {
       smart-enter = smart-enter;
       smart-paste = smart-paste;
@@ -76,9 +142,14 @@ home.packages = with pkgs; [
         # wl-clipboard
         { run = "plugin wl-clipboard"; on = [ "<C-y>" ]; }
         # smart-paste
+        { run = "plugin smart-paste"; on = [ "p" ]; }
         # restore
         { run = "plugin restore"; on = [ "u" ]; }
         { run = "plugin restore -- --interactive"; on = [ "U" ]; }
+        # bookmarks
+        { run = "plugin bookmarks save"; on = [ "m" ]; }
+        { run = "plugin bookmarks delete"; on = [ "b" "d" ]; }
+        { run = "plugin bookmarks jump"; on = [ "'" ]; }
       ];
     };
   };

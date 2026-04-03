@@ -5,7 +5,8 @@
   # my-module = import ./my-module.nix;
   imports = [
     ./keyboard-fix.nix
-    ./sddm.nix
+    # ./sddm.nix # - my sddm
+    ./qylock-sddm.nix # qylock flake sddm
     ./bootloader.nix
     ./zram.nix
     ./noctalia.nix

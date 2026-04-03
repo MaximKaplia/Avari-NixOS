@@ -36,8 +36,4 @@
       config.allowUnfree = true;
     };
   };
-
-  # Adds the emacs overlay - reference how to enable overlays (also has to be enabled in home.nix)
-  # emacs = inputs.emacs-overlay.overlays.default;
-
 }
