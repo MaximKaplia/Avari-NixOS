@@ -183,7 +183,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -234,22 +234,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1774106199,
-        "narHash": "sha256-US5Tda2sKmjrg2lNHQL3jRQ6p96cgfWh3J1QBliQ8Ws=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "6c9a78c09ff4d6c21d0319114873508a6ec01655",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1767799921,
         "narHash": "sha256-r4GVX+FToWVE2My8VVZH4V0pTIpnu2ZE8/Z4uxGEMBE=",
         "owner": "NixOS",
@@ -274,11 +258,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775169080,
-        "narHash": "sha256-g769LWhjWrLCXEC/qxuK1tPVj6i3dhPjfn8tn108B7w=",
+        "lastModified": 1775178947,
+        "narHash": "sha256-QWHv3jdNLh4/mSllvoY9YcCkeAWiSvTFkSNmvb22Tqc=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "bcbbafda1e9750b0aa8056f3881d312bf4e06d45",
+        "rev": "0d59c6c7b36e4be516c673a6dba88c66f9a2a9f8",
         "type": "github"
       },
       "original": {
@@ -336,7 +320,9 @@
     },
     "qylock": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1775148947,
@@ -373,7 +359,7 @@
         "firefox-gnome-theme": "firefox-gnome-theme",
         "flake-parts": "flake-parts",
         "gnome-shell": "gnome-shell",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "systems": "systems_3",
         "tinted-foot": "tinted-foot",

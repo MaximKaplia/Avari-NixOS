@@ -32,12 +32,12 @@
     # LazyVim --------------------------------------------------------------
     lazyvim ={
       url = "github:pfassina/lazyvim-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
       };
     # Qylock SDDM ----------------------------------------------------------
     qylock = {
       url = "github:LordHerdier/qylock-nix";
-      #inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # ----------------------------------------------------------------------
   };

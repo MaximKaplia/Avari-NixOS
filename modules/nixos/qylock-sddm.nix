@@ -1,9 +1,9 @@
 {...}: {
   programs.qylock = {
     enable = true;
-    theme = "minecraft"; # Quickshell lockscreen theme
-    sddmTheme = "minecraft"; # optional: also sets services.displayManager.sddm.theme
-    sddmThemeFonts = [ ../../fonts/minecraft.otf ];
+    theme = "terraria"; # Quickshell lockscreen theme
+    sddmTheme = "terraria"; # optional: also sets services.displayManager.sddm.theme
+    sddmThemeFonts = [ ../../fonts/Andy-Bold.ttf ];
   };
 
   services.displayManager.sddm = {
